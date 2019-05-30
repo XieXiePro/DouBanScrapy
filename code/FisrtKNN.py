@@ -32,7 +32,7 @@ if __name__ == '__main__':
     plt.scatter(df[8].astype(float), df[7].astype(float))
     plt.show()
 
-    scoreDf = pd.DataFrame(df, columns=[7])
+    scoreDf = pd.DataFrame(df, columns=[7, 8])
     scoreDf.head()
 
     k = 6  # 聚类的类别
