@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="豆瓣TOP250 Beta版" name="description">
+  <meta content="豆瓣TOP250 Beta版" name="keywords">
+  <title>豆瓣TOP250 Beta版</title>
+  <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body class="container">
+
+  <header class="row">
+    <nav class="col-md-12 navbar navbar-default navbar-static-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="http://127.0.0.1:5000">豆瓣TOP250</a>
+      </div>
+      <div class="collaps navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+{% block body %}{% endblock %}
+
+  <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='page.js') }}"></script>
+  <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

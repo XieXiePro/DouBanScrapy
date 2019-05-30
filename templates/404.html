@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <!--页面自动刷新 注：其中15指每隔15秒刷新一次页面.-->
+    <!--<meta http-equiv="refresh" content="15">-->
+    <title>404</title>
+    <style type="text/css">
+        html,body,header,div,main,p,span,ul,li{ margin: 0; padding: 0; }
+        #refreshContainer li{ background-color: #eee; margin-bottom: 1px; padding: 20px 10px; }
+        .refreshText{ position: absolute; width: 100%; line-height: 50px; text-align: center; left: 0; top: 0; }
+    </style>
+</head>
+<body>
+<main>
+<div style="text-align:center;background:#fff;height:450px;padding-top: 200px;">
+    <!--下拉刷新容器-->
+    <p class="refreshText" style="color:#f5f5f5"></p>
+    <div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+        <img style="height:96px;width:96px;" src="../static/images/loadfail.png" alt=""/>
+
+        <div>
+            <p class="loadingText" style="color:#999999">数据加载失败，请检查</p>
+        </div>
+    </div>
+</div>
+</main>
+</body>
+<!--<script src="../../js/loadfail.js"></script>-->
+<script type="text/javascript">
+    (function(window) {
+        var _element = document.getElementById('refreshContainer'),
+            _refreshText = document.querySelector('.refreshText'),
+            _loadingText = document.querySelector('.loadingText'),
+            _startPos = 0,
+            _transitionHeight = 0;
+        _element.addEventListener('touchstart', function(e) {
+            console.log('初始位置：', e.touches[0].pageY);
+            _startPos = e.touches[0].pageY;
+            _element.style.position = 'relative';
+            _element.style.transition = 'transform 0s';
+        }, false);
+
+        _element.addEventListener('touchmove', function(e) {
+            console.log('当前位置：', e.touches[0].pageY);
+            _transitionHeight = e.touches[0].pageY - _startPos;
+
+            if (_transitionHeight > 0 && _transitionHeight < 60) {
+                _refreshText.innerText = '下拉刷新';
+                _loadingText.innerText = '数据加载失败，再戳我试试';
+                _element.style.transform = 'translateY('+_transitionHeight+'px)';
+                if (_transitionHeight > 55) {
+                    _refreshText.innerText = '释放更新';
+                }
+            }
+        }, false);
+        _element.addEventListener('touchend', function(e) {
+            _element.style.transition = 'transform 0.5s ease 1s';
+            _element.style.transform = 'translateY(0px)';
+            _refreshText.innerText = '更新中...';
+            _loadingText.innerText = '加载中...';
+            window.location.reload(true);
+        }, false);
+    })(window);
+</script>
+</html>

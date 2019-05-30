@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class="entries list-unstyled">
+{% for entry in entries %}
+  <li class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-xs-2 col-sm-2">
+      <span >排名：{{ entry[1] }}</span>
+      <a href={{ entry[3] }} target="_blank">
+        <img src="{{ entry[3] }}" alt="{{ entry[4] }}" width="100"><br/>
+      </a>
+    </div>
+    <div class="col-xs-4 col-sm-4">
+      <a href={{ entry[4] }} target="_blank">{{ entry[2] }}</a><br /><br />
+      <span class="hidden-sm hidden-xs">导演：{{ entry[5] }}
+        &nbsp;&nbsp;&nbsp; 题材：{{ entry[6] }}</span>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+      评分：{{ entry[7] }}<br/>
+      <span class="hidden-sm hidden-xs">评论人数：{{ entry[8]}}</span><br/>
+          <div class="col-xs-3 col-sm-2">
+    </div>
+      <span class="hidden-sm hidden-xs">{{ entry[9] }}</span>
+    </div>
+{% else %}
+  <li><em>Unbelievable. No entries here so far.</em>
+{% endfor %}
+</ul>
+{% endblock %}
